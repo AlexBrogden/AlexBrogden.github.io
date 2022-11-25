@@ -1,2 +1,2 @@
-# FirstProject
-First Test Site
+# First Project
+My first responsive website
