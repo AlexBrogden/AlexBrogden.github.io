@@ -1,0 +1,566 @@
+/* TEMPLATE STYLESHEET */
+
+/*Additional
+
+1. Added a third media query to make the image gallery look better
+2. Tweaked the javascript and turned it into a dark mode/light mode option
+3. Added further styling to the contact form
+4. 
+
+/* box sizing */
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    transition: background-color 1s ease;
+}
+
+/* Default styling styling for the body.*/
+body {
+    /* update with Google font, web safe font and generic fallback */
+    font-family: 'Ubuntu', "Gill Sans", sans-serif;
+    /* the default browser font size is 16px */
+    font-size: 1.1rem;
+    /* update to suit your type choices */
+    line-height: 1.5;
+    /* base text colour - update to suit your design */
+    color: #f5f5f5;
+    background-color: #0d0d0d;
+    margin: 0px;
+}
+
+/* main layout */
+.container-content {
+    max-width: 670px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px 20px;
+}
+
+/* element styling (e.g. standard p, h1, h2, a, etc) */
+h1,
+h2, h3 {
+    /* Google font, web safe font, generic fallback */
+    font-weight: normal;
+    font-family: 'Alice', Cambria, serif;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 3.2rem;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+h2, h3 {
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+h2 {
+    transition: all 2s ease;
+    font-size: 2.5rem;
+}
+
+h3 {
+    margin-top: 50px;
+    font-size: 1.7rem;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+/*link styling*/
+a:link {
+    color: #FF7070;
+    transition: none;
+}
+
+a:visited {
+    color: #BE8AFF;
+}
+
+a:focus {
+    color: #00B9D1;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00B9D1;
+    text-decoration: none;
+}
+
+a:active {
+    background-color: #00B9D1;
+    color: #0d0d0d;
+}
+
+/* navigation (using flexbox) */
+/* small screen code */
+.page-nav {
+    position: sticky;
+    top: 0;
+    background-color: #0d0d0d;
+    z-index: 1;
+}
+
+    .page-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        border-top: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-nav li {
+        flex: 1 1 50%;
+        display: flex;
+        border-bottom: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+    }
+
+    .page-nav a {
+        padding: 15px 10px;
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        flex: 1 1 auto;
+        transition: all 0.2s ease;
+    }
+
+        .page-nav a:link, .page-nav a:visited {
+            color: #f5f5f5;
+        }
+
+        .page-nav a:hover {
+            background: #f5f5f5;
+            color: #0d0d0d;
+        }
+
+/*large screen code*/
+@media screen and (min-width: 760px) {
+    .page-nav ul {
+        flex-wrap: nowrap;
+    }
+
+    .page-nav li {
+        flex: 1 1 25%;
+    }
+}
+
+/* page header */
+.page-header {
+    background-color: #941B0C;
+    background-image: url(../images/my-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    display: flex;
+    height: 40vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-content {
+    max-width: 400px;
+    color: #f5f5f5;
+    padding: 10px;
+}
+
+    .header-content h1, .header-content p {
+        text-shadow: 3px 3px 4px #000;
+        text-align: center;
+    }
+
+/*section styling*/
+section {
+    margin: 50px 0px;
+}
+
+/*about me section*/
+.about-me {
+    margin-top: 0px;
+    background-color: #0d0d0d;
+}
+
+/*work section*/
+.work-experience {
+    background-color: #0e0e0e;
+}
+
+    .work-experience .container-content {
+        border-top: 1px solid #f5f5f5
+    }
+
+/*image section*/
+img {
+    max-width: 100%;
+    height: auto;
+    transition: all 2s ease;
+}
+
+.image-gallery {
+    background-color: #0f0f0f;
+}
+
+    .image-gallery .container-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        border-top: 1px solid #f5f5f5
+    }
+
+    /* image gallery media queries and size overrides */
+    .image-gallery h2 {
+        margin-bottom: 50px;
+    }
+
+    .image-gallery .an-image {
+        margin: 0;
+    }
+
+    .image-gallery .image-caption {
+        padding: 8px 0 50px 0;
+    }
+
+        .image-gallery .an-image:nth-of-type(3) .image-caption {
+            padding: 8px 0 0 0;
+        }
+
+    .image-gallery .container-content {
+        padding-bottom: 80px;
+    }
+
+/*small screen*/
+@media screen and (max-width: 599px) {
+
+    .image-gallery h2 {
+        text-align: left;
+    }
+
+    .image-gallery .image-container img {
+        border: 1px solid #f5f5f5;
+    }
+
+    .js-modify-page .image-gallery .image-container img {
+        border: 1px solid #0d0d0d;
+    }
+}
+
+/*medium screen*/
+@media screen and (min-width: 600px) {
+
+    .image-gallery h2 {
+        text-align: center;
+    }
+
+    .image-gallery .image-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .image-gallery .an-image {
+        padding: 20px;
+        background: #f5f5f5;
+    }
+
+    .js-modify-page .an-image {
+        background: #0d0d0d;
+    }
+
+        .image-gallery .an-image:nth-child(1) {
+            margin-right: 10px;
+        }
+
+        .image-gallery .an-image:nth-child(2) {
+            margin-left: 10px;
+        }
+
+        .image-gallery .an-image:nth-child(3) {
+            grid-column: 1 / 3;
+            margin-left: 0px;
+            margin: 20px auto;
+        }
+
+            .image-gallery .an-image:nth-child(3) img {
+                display: block;
+                margin: 0 auto;
+            }
+
+    .image-gallery .image-caption {
+        padding: 8px 0 10px 0;
+    }
+
+    .image-gallery .image-caption p {
+        color: #0d0d0d;
+    }
+
+    .js-modify-page .image-gallery .image-caption p {
+        color: #f5f5f5;
+    }
+}
+
+/*large screen*/
+@media screen and (min-width: 800px) {
+
+    .image-gallery .image-container {
+        display: flex;
+    }
+
+    .image-gallery .an-image {
+        flex: 33%;
+    }
+
+        .image-gallery .an-image:nth-child(3) {
+            margin: 0px;
+            margin-left: 20px;
+        }
+
+        .image-gallery .container-content {
+            padding-bottom: 100px;
+        }
+}
+
+/*contact section*/
+.contact-me {
+    background-color: #0d0d0d;
+    padding: 60px 20px 20px 20px;
+}
+
+    .contact-me .container-content {
+        padding: 20px;
+        border: 1px solid #f5f5f5;
+        border-radius: 15px;
+    }
+
+    .contact-me h2 {
+        text-align: center;
+    }
+
+    .contact-me p {
+        align-items: center;
+    }
+
+/* form styling */
+form {
+    padding: 0px 30px;
+}
+
+    form label {
+        display: block;
+        /* instead of inline */
+        padding-bottom: 0.2em;
+        padding-top: 1em;
+    }
+
+    form input,
+    form textarea {
+        padding: 0.1em 0.1em;
+        font-size: 1.2em;
+        /* these elements do not inherit the font-family from the body tag */
+        font-family: arial, helvetica, sans-serif;
+        /* lighter grey, less visually heavy */
+        border: 1px solid #bbb;
+        /* make sure our fields aren't too wide or not wide enough */
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+.button {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+form input[type="submit"] {
+    /* https://developer.mozilla.org/en/docs/Web/CSS/Attribute_selectors */
+    /* if you used display:block; this would go right across the page - if you use inline-block the button will only be as wide as the text and the padding */
+    min-width: 0;
+    /* turn off a minimum width for the button and let the browser work it out */
+    background-color: #941B0C;
+    border: 0;
+    border-radius: 0.2em;
+    padding: 13px 30px;
+    margin-top: 10px;
+    /* top and bottom, left and right */
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #f5f5f5;
+    transition: background-color 0.2s ease;
+    /* less jarring transition from initial colour to hover colour */
+}
+
+    form input[type="submit"]:hover {
+        background-color: #BD240F;
+        /* you don't have to change the colour too much for hover states - just make it a little bit lighter or darker */
+    }
+
+/* create CSS that will be used by the HTML inserted by the JavaScript */
+.js-message {
+    text-align: center;
+    padding: 1px 5px;
+    width: 240px;
+    color: #0d0d0d;
+    background-color: #f5f5f5;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+/* footer section*/
+.page-footer {
+    background: black;
+    display: flex;
+    height: 18vh;
+    align-items: center;
+    justify-content: center;
+}
+
+    .page-footer .footer-content {
+        padding: 0px 20px;
+        text-align: center;
+    }
+
+    .page-footer .footer-content p {
+        padding: 20px;
+    }
+
+/*javascript styling*/
+/* this code only takes effect when the HTML tag has the class of 'js-modify-page' added to it, e.g. <html class="js-modify-page"> */
+/*body styling*/
+    .js-modify-page body {
+        background-color: #f5f5f5;
+    }
+
+    /*element styling*/
+.js-modify-page h2, .js-modify-page h3, .js-modify-page p {
+    color: #0d0d0d;
+}
+
+.js-modify-page .header-content p {
+    color: #f5f5f5;
+}
+
+.js-modify-page h2 {
+    letter-spacing: 1rem;
+}
+
+.js-modify-page img {
+    filter: grayscale(100%);
+}
+
+/*nav styling*/
+.js-modify-page .page-nav {
+    background-color: #f5f5f5;
+}
+
+    .js-modify-page .page-nav a:link, .js-modify-page .page-nav a:visited {
+        color: #0d0d0d;
+    }
+
+    .js-modify-page .page-nav a:hover {
+        background: #0d0d0d;
+        color: #f5f5f5;
+    }
+
+/*section styling*/
+/*about me section*/
+.js-modify-page .about-me {
+    background-color: #f5f5f5;
+}
+
+/*work section*/
+.js-modify-page .work-experience {
+    background-color: #f6f6f6;
+}
+
+    .js-modify-page .work-experience .container-content {
+        border-top: 1px solid #0d0d0d;
+    }
+
+/*image section*/
+    .js-modify-page .image-gallery {
+        background-color: #f7f7f7;
+    }
+
+        .js-modify-page .image-gallery .container-content {
+            border-top: 1px solid #0d0d0d;
+        }
+
+/*contact me section*/
+    .js-modify-page .contact-me {
+        background-color: #f5f5f5;
+    }
+
+    .js-modify-page .contact-me .container-content {
+        border: 1px solid #0d0d0d;
+    }
+
+    /*footer styling*/
+    .js-modify-page .page-footer {
+        background-color: white;
+    }
+
+    /*link styling*/
+.js-modify-page a:link {
+    color: #dd1e1e;
+}
+
+.js-modify-page a:visited {
+    color: #7622de;
+}
+
+.js-modify-page a:focus {
+    color: #00adc3;
+}
+
+.js-modify-page a:hover {
+    color: #00adc3;
+}
+
+.js-modify-page a:active {
+    background-color: #00adc3;
+    color: #f5f5f5;
+}
+
+.js-modify-page .js-message {
+    background-color: #0d0d0d;
+    color: #f5f5f5;
+}
+
+/* style the button */
+button.js-make-something-happen {
+    font-weight: bold;
+    background: #f5f5f5;
+    color: #0d0d0d;
+    border: 0;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+button.js-make-something-happen:hover {
+    background: #cfcfcf;
+}
+
+.js-modify-page button.js-make-something-happen {
+    background: #0d0d0d;
+    color: #f5f5f5;
+}
