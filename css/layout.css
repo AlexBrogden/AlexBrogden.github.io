@@ -427,7 +427,7 @@ form input[type="submit"] {
 .page-footer {
     background: black;
     display: flex;
-    height: 18vh;
+    height: 25vh;
     align-items: center;
     justify-content: center;
 }
