@@ -5,10 +5,9 @@
 1. Added a third media query to make the image gallery look better
 2. Tweaked the javascript and turned it into a dark mode/light mode option
 3. Added further styling to the contact form
-4. 
+4. Made the navigation sticky positioned.
 
 /* box sizing */
-/* apply a natural box layout model to all elements, but allowing components to change */
 html {
     box-sizing: border-box;
 }
@@ -18,7 +17,12 @@ html {
     transition: background-color 1s ease;
 }
 
-/* Default styling styling for the body.*/
+/* Default styling for the body.*/
+:root {
+    --main-black-color: #0d0d0d;
+    --main-white-color: #f5f5f5;
+}
+
 body {
     /* update with Google font, web safe font and generic fallback */
     font-family: 'Ubuntu', "Gill Sans", sans-serif;
@@ -27,8 +31,8 @@ body {
     /* update to suit your type choices */
     line-height: 1.5;
     /* base text colour - update to suit your design */
-    color: #f5f5f5;
-    background-color: #0d0d0d;
+    color: var(--main-white-color);
+    background-color: var(--main-black-color);
     margin: 0px;
 }
 
@@ -37,7 +41,7 @@ body {
     max-width: 670px;
     margin-left: auto;
     margin-right: auto;
-    padding: 50px 20px;
+    padding: 100px 20px;
 }
 
 /* element styling (e.g. standard p, h1, h2, a, etc) */
@@ -61,6 +65,7 @@ h2, h3 {
 }
 
 h2 {
+    margin-top: 0px;
     transition: all 2s ease;
     font-size: 2.5rem;
 }
@@ -93,19 +98,14 @@ a:visited {
     color: #BE8AFF;
 }
 
-a:focus {
-    color: #00B9D1;
-    text-decoration: none;
-}
-
-a:hover {
+a:focus, a:hover {
     color: #00B9D1;
     text-decoration: none;
 }
 
 a:active {
     background-color: #00B9D1;
-    color: #0d0d0d;
+    color: var(--main-black-color);
 }
 
 /* navigation (using flexbox) */
@@ -113,15 +113,17 @@ a:active {
 .page-nav {
     position: sticky;
     top: 0;
-    background-color: #0d0d0d;
+    background-color: black;
     z-index: 1;
+}
+
+.js-modify-page .page-nav {
+    background-color: white;
 }
 
     .page-nav ul {
         display: flex;
         flex-wrap: wrap;
-        border-top: 1px solid #ddd;
-        border-right: 1px solid #ddd;
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -130,9 +132,33 @@ a:active {
     .page-nav li {
         flex: 1 1 50%;
         display: flex;
-        border-bottom: 1px solid #ddd;
-        border-left: 1px solid #ddd;
     }
+
+        .page-nav li:nth-child(2) {
+            border-left: 1px solid var(--main-white-color);
+        }
+
+        .page-nav li:nth-child(3) {
+            border-top: 1px solid var(--main-white-color);
+        }
+
+        .page-nav li:nth-child(4) {
+            border-top: 1px solid var(--main-white-color);
+            border-left: 1px solid var(--main-white-color);
+        } 
+
+        .js-modify-page .page-nav li:nth-child(2) {
+            border-left: 1px solid var(--main-black-color);
+        }
+
+        .js-modify-page .page-nav li:nth-child(3) {
+            border-top: 1px solid var(--main-black-color);
+        }
+
+        .js-modify-page .page-nav li:nth-child(4) {
+            border-top: 1px solid var(--main-black-color);
+            border-left: 1px solid var(--main-black-color);
+        } 
 
     .page-nav a {
         padding: 15px 10px;
@@ -145,12 +171,21 @@ a:active {
     }
 
         .page-nav a:link, .page-nav a:visited {
-            color: #f5f5f5;
+            color: var(--main-white-color)
         }
 
-        .page-nav a:hover {
-            background: #f5f5f5;
-            color: #0d0d0d;
+        .page-nav a:hover, .page-nav a:focus {
+            background: var(--main-white-color);
+            color: black;
+        }
+
+        .js-modify-page .page-nav a:link, .js-modify-page .page-nav a:visited {
+            color: var(--main-black-color);
+        }
+    
+        .js-modify-page .page-nav a:hover {
+            background: var(--main-black-color);
+            color: white;
         }
 
 /*large screen code*/
@@ -162,6 +197,25 @@ a:active {
     .page-nav li {
         flex: 1 1 25%;
     }
+
+    .page-nav li:nth-child(3) {
+        border-top: none;
+        border-left: 1px solid var(--main-white-color);
+    }
+
+    .page-nav li:nth-child(4) {
+        border-top: none;
+    } 
+
+    .js-modify-page .page-nav li:nth-child(3) {
+        border-top: none;
+        border-left: 1px solid var(--main-black-color);
+    }
+
+    .js-modify-page .page-nav li:nth-child(4) {
+        border-top: none;
+    } 
+
 }
 
 /* page header */
@@ -180,7 +234,7 @@ a:active {
 
 .header-content {
     max-width: 400px;
-    color: #f5f5f5;
+    color: var(--main-white-color);
     padding: 10px;
 }
 
@@ -190,23 +244,31 @@ a:active {
     }
 
 /*section styling*/
-section {
-    margin: 50px 0px;
-}
-
 /*about me section*/
 .about-me {
-    margin-top: 0px;
-    background-color: #0d0d0d;
+    background-color: var(--main-black-color);
 }
+
+    .about-me .container-content {
+        padding-top: 50px;
+    }
+
+    .about-me p {
+        margin: 20px 0;
+    }
+
+        .about-me p:nth-of-type(4) {
+            margin-bottom: 0px;
+        }
+
 
 /*work section*/
 .work-experience {
-    background-color: #0e0e0e;
+    background-color: #121212;
 }
 
     .work-experience .container-content {
-        border-top: 1px solid #f5f5f5
+        border-top: 1px solid var(--main-white-color)
     }
 
 /*image section*/
@@ -217,16 +279,16 @@ img {
 }
 
 .image-gallery {
-    background-color: #0f0f0f;
+    background-color: #171717;
 }
 
     .image-gallery .container-content {
         max-width: 1200px;
         margin: 0 auto;
-        border-top: 1px solid #f5f5f5
+        border-top: 1px solid var(--main-white-color); 
+        padding-bottom: 80px;
     }
 
-    /* image gallery media queries and size overrides */
     .image-gallery h2 {
         margin-bottom: 50px;
     }
@@ -236,17 +298,14 @@ img {
     }
 
     .image-gallery .image-caption {
-        padding: 8px 0 50px 0;
+        padding: 8px 0 100px 0;
     }
 
-        .image-gallery .an-image:nth-of-type(3) .image-caption {
-            padding: 8px 0 0 0;
-        }
-
-    .image-gallery .container-content {
-        padding-bottom: 80px;
+    .image-gallery .an-image:nth-of-type(3) .image-caption {
+        padding: 8px 0 0 0;
     }
 
+    /* image gallery media queries and size overrides */
 /*small screen*/
 @media screen and (max-width: 599px) {
 
@@ -255,11 +314,11 @@ img {
     }
 
     .image-gallery .image-container img {
-        border: 1px solid #f5f5f5;
+        border: 1px solid var(--main-white-color);
     }
 
     .js-modify-page .image-gallery .image-container img {
-        border: 1px solid #0d0d0d;
+        border: 1px solid var(--main-black-color);
     }
 }
 
@@ -277,42 +336,42 @@ img {
 
     .image-gallery .an-image {
         padding: 20px;
-        background: #f5f5f5;
+        background: var(--main-white-color);
     }
 
     .js-modify-page .an-image {
-        background: #0d0d0d;
+        background: var(--main-black-color);
     }
 
-        .image-gallery .an-image:nth-child(1) {
-            margin-right: 10px;
-        }
+    .image-gallery .an-image:nth-child(1) {
+        margin-right: 10px;
+    }
 
-        .image-gallery .an-image:nth-child(2) {
-            margin-left: 10px;
-        }
+    .image-gallery .an-image:nth-child(2) {
+        margin-left: 10px;
+    }
 
-        .image-gallery .an-image:nth-child(3) {
-            grid-column: 1 / 3;
-            margin-left: 0px;
-            margin: 20px auto;
-        }
+    .image-gallery .an-image:nth-child(3) {
+        grid-column: 1 / 3;
+        margin-left: 0px;
+        margin: 20px auto;
+    }
 
-            .image-gallery .an-image:nth-child(3) img {
-                display: block;
-                margin: 0 auto;
-            }
+        .image-gallery .an-image:nth-child(3) img {
+            display: block;
+            margin: 0 auto;
+        }
 
     .image-gallery .image-caption {
         padding: 8px 0 10px 0;
     }
 
-    .image-gallery .image-caption p {
-        color: #0d0d0d;
-    }
+        .image-gallery .image-caption p {
+            color: var(--main-black-color);
+        }
 
     .js-modify-page .image-gallery .image-caption p {
-        color: #f5f5f5;
+        color: var(--main-white-color);
     }
 }
 
@@ -332,24 +391,25 @@ img {
             margin-left: 20px;
         }
 
-        .image-gallery .container-content {
-            padding-bottom: 100px;
-        }
+    .image-gallery .container-content {
+        padding-bottom: 100px;
+    }
 }
 
 /*contact section*/
 .contact-me {
-    background-color: #0d0d0d;
-    padding: 60px 20px 20px 20px;
+    background-color: var(--main-black-color);
+    padding: 100px 20px 100px 20px;
 }
 
     .contact-me .container-content {
         padding: 20px;
-        border: 1px solid #f5f5f5;
+        border: 1px solid var(--main-white-color);
         border-radius: 15px;
     }
 
     .contact-me h2 {
+        padding-top: 20px;
         text-align: center;
     }
 
@@ -363,8 +423,8 @@ form {
 }
 
     form label {
-        display: block;
         /* instead of inline */
+        display: block;
         padding-bottom: 0.2em;
         padding-top: 1em;
     }
@@ -396,13 +456,13 @@ form input[type="submit"] {
     background-color: #941B0C;
     border: 0;
     border-radius: 0.2em;
-    padding: 13px 30px;
+    padding: 10px 25px;
     margin-top: 10px;
     /* top and bottom, left and right */
-    font-size: 1em;
+    font-size: 0.95rem;
     text-transform: uppercase;
     font-weight: bold;
-    color: #f5f5f5;
+    color: var(--main-white-color);
     transition: background-color 0.2s ease;
     /* less jarring transition from initial colour to hover colour */
 }
@@ -414,11 +474,12 @@ form input[type="submit"] {
 
 /* create CSS that will be used by the HTML inserted by the JavaScript */
 .js-message {
+    font-size: 0.9rem;
     text-align: center;
     padding: 1px 5px;
-    width: 240px;
-    color: #0d0d0d;
-    background-color: #f5f5f5;
+    width: 220px;
+    color: var(--main-black-color);
+    background-color: var(--main-white-color);
     border: 1px solid white;
     border-radius: 10px;
 }
@@ -427,7 +488,7 @@ form input[type="submit"] {
 .page-footer {
     background: black;
     display: flex;
-    height: 25vh;
+    height: 30vh;
     align-items: center;
     justify-content: center;
 }
@@ -437,24 +498,24 @@ form input[type="submit"] {
         text-align: center;
     }
 
-    .page-footer .footer-content p {
-        padding: 20px;
-    }
+        .page-footer .footer-content p {
+            padding: 20px;
+        }
 
 /*javascript styling*/
-/* this code only takes effect when the HTML tag has the class of 'js-modify-page' added to it, e.g. <html class="js-modify-page"> */
+/* the code from this point forward only takes effect when the HTML tag has the class of 'js-modify-page' added to it, e.g. <html class="js-modify-page"> */
 /*body styling*/
-    .js-modify-page body {
-        background-color: #f5f5f5;
-    }
+.js-modify-page body {
+    background-color: var(--main-white-color);
+}
 
-    /*element styling*/
+/*element styling*/
 .js-modify-page h2, .js-modify-page h3, .js-modify-page p {
-    color: #0d0d0d;
+    color: var(--main-black-color);
 }
 
 .js-modify-page .header-content p {
-    color: #f5f5f5;
+    color: var(--main-white-color);
 }
 
 .js-modify-page h2 {
@@ -467,57 +528,62 @@ form input[type="submit"] {
 
 /*nav styling*/
 .js-modify-page .page-nav {
-    background-color: #f5f5f5;
+    background-color: var(--main-white-color);
 }
 
     .js-modify-page .page-nav a:link, .js-modify-page .page-nav a:visited {
-        color: #0d0d0d;
+        color: var(--main-black-color);
     }
 
     .js-modify-page .page-nav a:hover {
-        background: #0d0d0d;
-        color: #f5f5f5;
+        background: var(--main-black-color);
+        color: var(--main-white-color);
     }
 
 /*section styling*/
 /*about me section*/
 .js-modify-page .about-me {
-    background-color: #f5f5f5;
+    background-color: var(--main-white-color);
 }
 
 /*work section*/
 .js-modify-page .work-experience {
-    background-color: #f6f6f6;
+    background-color: #f7f7f7;
 }
 
     .js-modify-page .work-experience .container-content {
-        border-top: 1px solid #0d0d0d;
+        border-top: 1px solid var(--main-black-color);
     }
 
 /*image section*/
-    .js-modify-page .image-gallery {
-        background-color: #f7f7f7;
-    }
+.js-modify-page .image-gallery {
+    background-color: #f9f9f9;
+}
 
-        .js-modify-page .image-gallery .container-content {
-            border-top: 1px solid #0d0d0d;
-        }
+    .js-modify-page .image-gallery .container-content {
+        border-top: 1px solid var(--main-black-color);
+    }
 
 /*contact me section*/
-    .js-modify-page .contact-me {
-        background-color: #f5f5f5;
-    }
+.js-modify-page .contact-me {
+    background-color: var(--main-white-color);
+}
 
     .js-modify-page .contact-me .container-content {
-        border: 1px solid #0d0d0d;
+        border: 1px solid var(--main-black-color);
     }
 
-    /*footer styling*/
-    .js-modify-page .page-footer {
-        background-color: white;
-    }
+.js-modify-page .js-message {
+    background-color: var(--main-black-color);
+    color: var(--main-white-color);
+}
 
-    /*link styling*/
+/*footer styling*/
+.js-modify-page .page-footer {
+    background-color: white;
+}
+
+/*link styling*/
 .js-modify-page a:link {
     color: #dd1e1e;
 }
@@ -526,41 +592,36 @@ form input[type="submit"] {
     color: #7622de;
 }
 
-.js-modify-page a:focus {
-    color: #00adc3;
-}
-
-.js-modify-page a:hover {
+.js-modify-page a:focus, .js-modify-page a:hover {
     color: #00adc3;
 }
 
 .js-modify-page a:active {
     background-color: #00adc3;
-    color: #f5f5f5;
-}
-
-.js-modify-page .js-message {
-    background-color: #0d0d0d;
-    color: #f5f5f5;
+    color: var(--main-white-color);
 }
 
 /* style the button */
 button.js-make-something-happen {
     font-weight: bold;
-    background: #f5f5f5;
-    color: #0d0d0d;
+    background: var(--main-white-color);
+    color: var(--main-black-color);
     border: 0;
-    padding: 0.5rem 2rem;
-    font-size: 1rem;
+    padding: 0.5rem 1.8rem;
+    font-size: 0.9rem;
     border-radius: 0.5rem;
     transition: background-color 0.2s ease;
 }
 
-button.js-make-something-happen:hover {
-    background: #cfcfcf;
-}
+    button.js-make-something-happen:hover {
+        background: #cfcfcf;
+    }
 
 .js-modify-page button.js-make-something-happen {
-    background: #0d0d0d;
-    color: #f5f5f5;
+    background: var(--main-black-color);
+    color: var(--main-white-color);
 }
+
+    .js-modify-page button.js-make-something-happen:hover {
+        background: #272727;
+    }
