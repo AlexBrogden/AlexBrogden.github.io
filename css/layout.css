@@ -378,6 +378,11 @@ img {
 /*large screen*/
 @media screen and (min-width: 800px) {
 
+    img:hover {
+        transform: scale(1.06);
+        transition: 0.4s ease;
+    }
+
     .image-gallery .image-container {
         display: flex;
     }
@@ -625,3 +630,7 @@ button.js-make-something-happen {
     .js-modify-page button.js-make-something-happen:hover {
         background: #272727;
     }
+
+.topnav #myLinks {
+    display: none;
+}
